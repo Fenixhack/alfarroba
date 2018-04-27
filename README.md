@@ -64,19 +64,49 @@ On the Settings tab, admins can easily control their event application timeline 
 ### Deploying locally
 Getting a local instance of Quill up and running takes less than 5 minutes! Start by setting up the database. Ideally, you should run MongoDB as a daemon with a secure configuration (with most linux distributions, you should be able to install it with your package manager, and it'll be set up as a daemon). Although not recommended for production, when running locally for development, you could do it like this
 
+#### The Database
+
+You can either install `mongod` locally or use `docker` or something else, as long as you have mongo up and running somewhere!
+
+Using mongod installed locally:
 ```
 mkdir db
 mongod --dbpath db --bind_ip 127.0.0.1 --nohttpinterface
 ```
 
-Install the necessary dependencies:
+**OR**
+
+Using docker:
+
+```
+docker pull mvertes/alpine-mongo
+```
+and run it like so, remember to specify the absolute path of the repo:
+
+```
+docker run -d --name mongo -p 27017:27017 -v /{absolute path to repo}/db:/data/db mvertes/alpine-mongo
+```
+
+#### Install the necessary dependencies
+
+You must have `npm`, `bower` and `gulp` installed on your system.
+There's no spcified node version but it works on version 9+ so that's what we recommend!
+
+You can install npm using your package manager, or `nvm` or whatever you prefer. Installing `bower` and `gulp` is pretty straigth forward:
+`npm install -g bower` and `npm install -g gulp`. Or if your `npm` is installed using root, run the commands with `sudo`.
+
+Now, once that's done, install the system using the following lines:
+
 ```
 npm install
 bower install
 npm run config
 ```
 
-Edit the configuration file in `.env` for your setup, and then run the application:
+Edit the configuration file in `.env` for your setup.
+If your mongo is not on localhost and not on port 27017, you want to edit this file.
+
+#### Run the application
 ```
 gulp server
 ```
