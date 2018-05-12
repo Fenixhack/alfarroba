@@ -84,7 +84,7 @@ docker pull mvertes/alpine-mongo
 and run it like so, remember to specify the absolute path of the repo:
 
 ```
-docker run -d --name mongo -p 27017:27017 -v /{absolute path to repo}/db:/data/db mvertes/alpine-mongo
+docker run -d --name mongo -p 27017:27017 -v {absolute path to repo}/db:/data/db mvertes/alpine-mongo
 ```
 
 #### Install the necessary dependencies
