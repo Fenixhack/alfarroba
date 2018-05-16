@@ -174,6 +174,14 @@ var schema = new mongoose.Schema({
     default: false,
   },
 
+  role: {
+    type: String,
+    required: true,
+    enum: {
+      values: ['organizer', 'volunteer', 'participant', 'mentor', 'sponsor', 'investor']
+    }
+  },
+
   timestamp: {
     type: Number,
     required: true,
