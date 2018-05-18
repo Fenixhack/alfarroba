@@ -1,12 +1,12 @@
-# Quill
-Registration, for hackers!
+# Alfarroba
+A complete hackathon tool!
 
-Quill is a registration system designed especially for hackathons. For hackers, it’s a clean and streamlined interface to submit registration and confirmation information. For hackathon organizers, it’s an easy way to manage applications, view registration stats, and more!
+Alfarroba is a hackathon management system designed to integrate most hackathon operations, both on the admin as on the participant side. It serves as an event management tool on the admin side and a working tool on the participant side. It builds on Quill, HackMIT's registration system designed especially for hackathons. For hackers, it’s a clean and streamlined interface to use, from registration to team formation, project tracking, project feedback receipt and having access to all event resources. For hackathon organizers, it’s an easy way to centralize operations by being able to manage registrations, view stats, reimburse expenses and more!
 
 ![Login Splash](./docs/images/screenshots/login.png)
 
 # Features
-## Quill for Users
+## Alfarroba for Users
 ### Dashboard
 ![Dashboard](./docs/images/screenshots/dashboard.png)
 
@@ -32,7 +32,7 @@ The Application tab takes users to their registration or confirmation form.
 ### Team Registration
 Hackathons commonly allow participants to register and be admitted as a team. The Team tab allows users to create or join a team with other users.
 
-## Quill for Admins
+## Alfarroba for Admins
 Admins can view stats, look through applications, or edit settings from the Admin panel.
 
 ### Stats
