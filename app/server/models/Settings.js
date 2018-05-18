@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
 var validator = require('validator');
 
+// ES6 Promises
+mongoose.Promise = global.Promise;
+
 /**
  * Settings Schema!
  *
