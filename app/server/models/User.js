@@ -44,6 +44,33 @@ var profile = {
     max: 1500
   },
 
+  // Social media info not required
+  twitterUrl: {
+    type: String,
+    min: 1,
+    max: 150,
+  },
+  facebookUrl: {
+    type: String,
+    min: 1,
+    max: 150,
+  },
+  githubUrl: {
+    type: String,
+    min: 1,
+    max: 150,
+  },
+  linkedinUrl: {
+    type: String,
+    min: 1,
+    max: 150,
+  },
+  otherUrls: {
+    type: Array,
+    min: 1,
+    max: 500,
+  },
+
   // Optional info for demographics
   gender: {
     type: String,
