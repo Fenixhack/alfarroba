@@ -14,7 +14,6 @@ module.exports = function(router) {
    * you are, indeed, an admin.
    */
   function isAdmin(req, res, next){
-
     var token = getToken(req);
 
     UserController.getByToken(token, function(err, user){
@@ -130,7 +129,7 @@ module.exports = function(router) {
   }
 
   /**
-   * Check if the user has any of the allowed categories.
+   * Check if the user has any of the allowed roles.
    */
   function hasUserRoleOf(roles) {
     if (typeof roles === 'string') {
@@ -141,29 +140,27 @@ module.exports = function(router) {
       var token = getToken(req);
 
       UserController.getByToken(token, function(err, user) {
-        var hasRoles = false;
+        var hasRole = false;
 
         if (err) {
           return res.status(500).send(err);
         }
 
         if (user) {
-          roles.forEach(function(role) {
-            if (user.roles.indexOf(role)) {
-              hasRoles.push(role)
-            }
-          });
+          hasRole = roles.indexOf(user.role) !== -1;
           req.user = user;
-          
-          return next();
+          if (hasRole) {
+            return next();
+          }
         }
 
         return res.status(401).send({
           message: 'Get outta here, punk!'
         });
-
       });
     }
+
+    return isAuth;
   }
 
   /**
