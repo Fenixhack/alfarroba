@@ -14,7 +14,6 @@ module.exports = function(router) {
    * you are, indeed, an admin.
    */
   function isAdmin(req, res, next){
-
     var token = getToken(req);
 
     UserController.getByToken(token, function(err, user){
@@ -105,6 +104,63 @@ module.exports = function(router) {
         return res.json(data);
       }
     };
+  }
+
+  /**
+   * Check if the user is logged in or return an HTTP 401.
+   */
+  function isLoggedIn(req, res, next){
+    var token = getToken(req);
+
+    UserController.getByToken(token, function(err, user){
+      if (err) {
+        return res.status(500).send(err);
+      }
+
+      if (user){
+        req.user = user;
+        return next();
+      }
+
+      return res.status(401).send({
+        message: 'You are not logged in!'
+      });
+    });
+  }
+
+  /**
+   * Check if the user has any of the allowed roles.
+   */
+  function hasUserRoleOf(roles) {
+    if (typeof roles === 'string') {
+      roles = roles.split(',');
+    }
+
+    const isAuth = function(req, res, next) {
+      var token = getToken(req);
+
+      UserController.getByToken(token, function(err, user) {
+        var hasRole = false;
+
+        if (err) {
+          return res.status(500).send(err);
+        }
+
+        if (user) {
+          hasRole = roles.indexOf(user.role) !== -1;
+          req.user = user;
+          if (hasRole) {
+            return next();
+          }
+        }
+
+        return res.status(401).send({
+          message: 'Get outta here, punk!'
+        });
+      });
+    }
+
+    return isAuth;
   }
 
   /**
