@@ -1,0 +1,34 @@
+version: "3"
+services: 
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+  ui:
+    build: .
+    command: npm run watch
+    ports: 
+      - "3000:3000"
+    environment:
+      DATABASE: mongodb://root:example@mongo:27017
+      PORT: 3000
+      JWT_SECRET: 'shhhh super secret code here bro'
+      ROOT_URL: http://localhost:3000
+      ADMIN_EMAIL: 'admin@example.com'
+      ADMIN_PASS: 'party'
+      EMAIL_CONTACT: 'Hackathon Team <team@example.com>'
+      EMAIL_HOST: 'smtp.gmail.com'
+      EMAIL_USER: 'foo@bar.com'
+      EMAIL_PASS: 'password'
+      EMAIL_PORT: '465'
+      EMAIL_HEADER_IMAGE: 'https://s3.amazonaws.com/hackmit-assets/Banner_600.jpg'
+      EMAIL_ADDRESS: 'team@example.com'
+      HACKATHON_NAME: 'Hackathon'
+      TWITTER_HANDLE: 'hackathon'
+      FACEBOOK_HANDLE: 'hackathon'
+      TEAM_MAX_SIZE: 4
+      SLACK_HOOK: 'https://hooks.slack.com/services/yourapikey'
+
+
