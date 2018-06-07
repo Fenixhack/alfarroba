@@ -15,6 +15,7 @@ services:
     ports: 
       - "3000:3000"
     environment:
+      NODE_ENV: dev
       DATABASE: mongodb://root:example@mongo:27017
       PORT: 3000
       JWT_SECRET: 'shhhh super secret code here bro'
