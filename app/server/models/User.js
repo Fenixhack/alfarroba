@@ -65,11 +65,6 @@ var profile = {
     min: 1,
     max: 150,
   },
-  otherUrls: {
-    type: String,
-    min: 1,
-    max: 500,
-  },
 
   // Optional info for demographics
   gender: {
@@ -261,11 +256,6 @@ var schema = new mongoose.Schema({
     type: String,
     min: 1,
     max: 150,
-  },
-  otherUrls: {
-    type: String,
-    min: 1,
-    max: 500,
   },
 
   /**
