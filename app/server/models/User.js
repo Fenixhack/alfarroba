@@ -217,11 +217,16 @@ var schema = new mongoose.Schema({
     default: Date.now(),
   },
 
-  teamCode: {
-    type: String,
-    min: 0,
-    max: 140,
-  },
+  // teamCode: {
+  //   type: String,
+  //   min: 0,
+  //   max: 140,
+  // },
+
+  teamCode: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Team'
+  }],
 
   verified: {
     type: Boolean,
