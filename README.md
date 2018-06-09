@@ -64,6 +64,14 @@ On the Settings tab, admins can easily control their event application timeline 
 ### Deploying locally
 Getting a local instance of Quill up and running takes less than 5 minutes! Start by setting up the database. Ideally, you should run MongoDB as a daemon with a secure configuration (with most linux distributions, you should be able to install it with your package manager, and it'll be set up as a daemon). Although not recommended for production, when running locally for development, you could do it like this
 
+#### If you have docker-compose, this is the super quick way
+```
+docker-compose up
+```
+And the app will be waiting for you at http://localhost:3000/
+
+In case you'r interested in docker-compose, here is the quick and clean [install guide](https://docs.docker.com/compose/install/#install-as-a-container)
+
 #### The Database
 
 You can either install `mongod` locally or use `docker` or something else, as long as you have mongo up and running somewhere!
