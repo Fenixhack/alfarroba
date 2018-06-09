@@ -2,6 +2,7 @@ angular.module('reg')
   .controller('DashboardCtrl', [
     '$rootScope',
     '$scope',
+    '$state',
     '$sce',
     'currentUser',
     'settings',
@@ -10,7 +11,8 @@ angular.module('reg')
     'UserService',
     'EVENT_INFO',
     'DASHBOARD',
-    function($rootScope, $scope, $sce, currentUser, settings, Utils, AuthService, UserService, EVENT_INFO, DASHBOARD){
+    function($rootScope, $scope,$state, $sce, currentUser, settings, Utils, AuthService, UserService, EVENT_INFO, DASHBOARD){
+      
       var Settings = settings.data;
       var user = currentUser.data;
       $scope.user = user;
@@ -104,5 +106,13 @@ angular.module('reg')
               });
         });
       };
+
+
+    // ---------------------------------------------------
+    // FORCE USER TO COMPLETE REGISTRAION 
+    // --------------------------------------------------- 
+    if($scope.dashState('openAndIncomplete')){
+      $state.go('app.application')
+    }
 
     }]);

@@ -11,6 +11,8 @@ angular.module('reg')
 
       var settings = Settings.data;
       var user = $rootScope.currentUser;
+      
+      
 
       $scope.EVENT_INFO = EVENT_INFO;
 

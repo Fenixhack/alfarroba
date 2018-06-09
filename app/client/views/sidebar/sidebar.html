@@ -5,13 +5,13 @@
     <img src="assets/images/logo.svg">
   </div>
 
-  <div ui-sref-active="active"
+  <div ng-hide="currentUser.verified && !currentUser.status.completedProfile" ui-sref-active="active"
        ui-sref="app.dashboard"
        class="item">
     Dashboard
   </div>
 
-  <div ng-show="currentUser.verified">
+  <div ng-show="currentUser.verified && currentUser.status.completedProfile">
 
     <div
       ui-sref-active="active"

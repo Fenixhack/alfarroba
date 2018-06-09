@@ -1,14 +1,18 @@
 <div id="application" class="page">
-  <div class="divided title">
+
+  <div ng-show="user.status.completedProfile" class="divided title">
     Profile
   </div>
-
+  <div ng-show="!user.status.completedProfile" class="divided title">
+    Registration
+  </div>
   <div class="ui stackable page grid">
     <div class="column">
       <div class="ui form"
             ng-class="{'loading': loading}">
 
-        <div class="divided title">Basic Information</div>
+        <div ng-show="user.status.completedProfile" class="divided title">Basic Information</div>
+        <div ng-show="!user.status.completedProfile" class="divided title">Please finish your registration</div>
 
         <fieldset ng-disabled="regIsClosed">
 
