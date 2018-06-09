@@ -75,6 +75,17 @@ angular.module('reg')
           }
         }
       })
+      .state('app.participants', {
+        url: "/participants?"+
+        '&page' +
+        '&size' +
+        '&query',
+        templateUrl:"views/participants/participants.html",
+        controler: 'ParticipantsCtrl',
+        data: {
+          requireAdmin: false
+        }
+      })
       .state('app.confirmation', {
         url: "/confirmation",
         templateUrl: "views/confirmation/confirmation.html",
@@ -102,17 +113,6 @@ angular.module('reg')
           settings: function(SettingsService){
             return SettingsService.getPublicSettings();
           }
-        }
-      })
-      .state('app.participants', {
-        views: {
-          '': {
-            templateUrl: "views/participants/participants.html",
-            controller: 'participantsCtrl'
-          }
-        },
-        data: {
-          requireAdmin: false
         }
       })
       .state('app.admin', {

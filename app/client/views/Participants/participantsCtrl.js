@@ -1,11 +1,12 @@
 angular.module('reg')
-  .controller('AdminUsersCtrl',[
+  .controller('ParticipantsCtrl',[
     '$scope',
     '$state',
     '$stateParams',
     'UserService',
     function($scope, $state, $stateParams, UserService){
 
+      console.log("hello")
       $scope.pages = [];
       $scope.users = [];
 
@@ -47,7 +48,7 @@ angular.module('reg')
       });
 
       $scope.goToPage = function(page){
-        $state.go('app.admin.users', {
+        $state.go('app.participants', {
           page: page,
           size: $stateParams.size || 50
         });
@@ -56,12 +57,12 @@ angular.module('reg')
       $scope.goUser = function($event, user){
         $event.stopPropagation();
 
-        $state.go('app.admin.user', {
+        $state.go('app.participants', {
           id: user._id
         });
       };
 
-      $scope.toggleCheckIn = function($event, user, index) {
+      /* $scope.toggleCheckIn = function($event, user, index) {
         $event.stopPropagation();
 
         if (!user.status.checkedIn){
@@ -91,9 +92,9 @@ angular.module('reg')
               swal("Accepted", user.profile.name + ' has been checked out.', "success");
             });
         }
-      };
+      }; */
 
-      $scope.acceptUser = function($event, user, index) {
+      /* $scope.acceptUser = function($event, user, index) {
         $event.stopPropagation();
 
         swal({
@@ -128,7 +129,7 @@ angular.module('reg')
 
           });
 
-      };
+      }; */
 
       function formatTime(time){
         if (time) {
