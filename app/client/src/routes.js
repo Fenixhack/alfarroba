@@ -104,6 +104,17 @@ angular.module('reg')
           }
         }
       })
+      .state('app.participants', {
+        views: {
+          '': {
+            templateUrl: "views/participants/participants.html",
+            controller: 'participantsCtrl'
+          }
+        },
+        data: {
+          requireAdmin: false
+        }
+      })
       .state('app.admin', {
         views: {
           '': {
