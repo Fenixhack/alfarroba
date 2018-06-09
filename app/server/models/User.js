@@ -200,9 +200,9 @@ var schema = new mongoose.Schema({
   role: {
     type: String,
     required: true,
-    default: 'participant',
+    default: 'hacker',
     enum: {
-      values: ['organizer', 'volunteer', 'participant', 'mentor', 'sponsor', 'investor']
+      values: ['hacker', 'mentor', 'partner', 'organizer']
     }
   },
 
