@@ -39,7 +39,7 @@
           <label> School </label>
           <div id="school" class="ui search">
             <div class="ui input">
-              <input class="prompt" type="text" placeholder="School" name="school" ng-model="user.profile.school">                
+              <input class="prompt" type="text" placeholder="School" name="school" ng-model="user.profile.school">
             </div>
             <div class="results"></div>
           </div>
@@ -69,6 +69,38 @@
             <option value="O">Other</option>
             <option value="N">I prefer not to answer.</option>
           </select>
+        </div>
+
+        <div class="field">
+          <label> Twitter </label>
+          <input type="text"
+                 name="twitterUrl"
+                 placeholder="something@twiter.com"
+                 ng-model="user.profile.twitterUrl">
+        </div>
+
+        <div class="field">
+          <label> Facebook </label>
+          <input type="text"
+                 name="facebookUrl"
+                 placeholder="something@facebook.com"
+                 ng-model="user.profile.facebookUrl">
+        </div>
+
+        <div class="field">
+          <label> GitHub </label>
+          <input type="text"
+                 name="githubUrl"
+                 placeholder="something@github.com"
+                 ng-model="user.profile.githubUrl">
+        </div>
+
+        <div class="field">
+          <label> LinkedIn </label>
+          <input type="text"
+                 name="linkedinUrl"
+                 placeholder="something@linkedin.com"
+                 ng-model="user.profile.linkedinUrl">
         </div>
 
         <div class="field">

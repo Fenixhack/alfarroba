@@ -65,11 +65,6 @@ var profile = {
     min: 1,
     max: 150,
   },
-  otherUrls: {
-    type: Array,
-    min: 1,
-    max: 500,
-  },
 
   // Optional info for demographics
   gender: {
@@ -98,6 +93,7 @@ var confirmation = {
   github: String,
   twitter: String,
   website: String,
+  otherUrls: String,
   resume: String,
 
   needsReimbursement: Boolean,
@@ -238,6 +234,28 @@ var schema = new mongoose.Schema({
     required: true,
     default: Date.now(),
     select: false
+  },
+
+  // Social media URL
+  twitterUrl: {
+    type: String,
+    min: 1,
+    max: 150,
+  },
+  facebookUrl: {
+    type: String,
+    min: 1,
+    max: 150,
+  },
+  githubUrl: {
+    type: String,
+    min: 1,
+    max: 150,
+  },
+  linkedinUrl: {
+    type: String,
+    min: 1,
+    max: 150,
   },
 
   /**
