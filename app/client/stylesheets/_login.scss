@@ -1,10 +1,12 @@
-#login {
+.login {
   height: 100%;
   width: 100%;
-  background-color: $login-bg-color;
-  background: $login-bg; 
+  background-color: $alfarroba-brown;
+  background: url('../assets/images/login-background.jpg') 100% center; 
   background-size: cover;
-
+  .ui.segment.login--bg{
+    background-color: $alfarroba-brown;
+  }
   > .container {
     position: relative;
     top: 50%;
@@ -18,28 +20,45 @@
       margin: 0 auto;
 
       .logo {
-        max-width: 100px;
+        max-width: 135px;
         margin: .5rem auto 1rem auto;
         img {
-          width: 100px;
-          height: 100px;
+          width: 100%;
         }
       }
 
       .button {
-        color: white;
+        color: black;
+        text-transform: uppercase;
+        border-radius: .7em;
         &.login {
-          background: $login-color;
+          background: $alfarroba-green;
         }
         &.register {
-          background: $register-color
+          background: $alfarroba-orange
         }
       }
 
       .forgot {
+        margin: .6em 0 0 0;
+        text-align: center;
+        a{
+          color: black;
+          font-weight: bold;
+          text-decoration: underline;
+          text-decoration-color: black;
+          transition: opacity .3s ease-in-out;
+          &:hover{
+            opacity: .6;
+          }
+        }
+      }
+      
+      .word{
+        font-weight: bold;
+        margin: .6em auto;
         text-align: center;
       }
-
     }
   }
 

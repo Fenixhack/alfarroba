@@ -1,16 +1,13 @@
-<div id="login">
+<div id="login" class="login">
   <div class="container">
     <div class="content">
-      <div class="ui segment">
+      <div class="ui segment login--bg">
 
         <div class="logo">
-          <img src="assets/images/logo-color.svg">
+          <img src="assets/images/logo.png">
         </div>
 
-        <div class="ui divider"></div>
-
-        <div class="ui small error message"
-             ng-show="error">
+        <div class="ui small error message" ng-show="error">
           {{error}}
         </div>
 
@@ -18,37 +15,25 @@
           <div class="ui login-password form">
             <form ng-submit="login()">
               <div class="field">
-                <label> Email</label>
-                <input type="email"
-                       id='email'
-                       placeholder="foo@bar.edu"
-                       ng-model="email">
+                <input type="email" id='email' placeholder="E-mail" ng-model="email">
               </div>
               <div class="field">
-                <label> Password</label>
-                <input type="password"
-                       id='password'
-                       placeholder="Password (at least 6 characters)"
-                       ng-model="password" required>
+                <input type="password" id='password' placeholder="Password" ng-model="password" required>
               </div>
               <div class="field">
-                <button id="login-password"
-                        type="submit"
-                        class="fluid ui login button">
-                        Login
+                <button id="login-password" type="submit" class="fluid ui login button">
+                  Login
                 </button>
               </div>
             </form>
           </div>
-
+          <div class="word">
+            or
+          </div>
           <div class="ui form" ng-show="regIsOpen">
-            <div class="ui divider"></div>
             <div class="field">
-              <button id="register"
-                      type="submit"
-                      class="fluid ui register button"
-                      ng-click="register()">
-                      Register
+              <button id="register" type="submit" class="fluid ui register button" ng-click="register()">
+                Register
               </button>
             </div>
           </div>
@@ -59,23 +44,16 @@
             <form ng-submit="sendResetEmail()">
               <div class="field">
                 <label> Email</label>
-                <input type="email"
-                       id='email'
-                       placeholder="foo@bar.edu"
-                       ng-model="email">
+                <input type="email" id='email' placeholder="E-mail" ng-model="email">
               </div>
               <div class="field">
-                <button id="forgot-password"
-                        type="submit"
-                        class="fluid ui login button">
-                        Send Reset Email
+                <button id="forgot-password" type="submit" class="fluid ui login button">
+                  Send Reset Email
                 </button>
               </div>
             </form>
           </div>
         </div>
-
-        <div class="ui divider"></div>
 
         <div ng-show="loginState === 'login'" class="forgot">
           <a href="#" ng-click="setLoginState('forgot')">
