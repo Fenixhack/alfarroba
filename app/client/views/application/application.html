@@ -11,7 +11,7 @@
         <div class="divided title">Basic Information</div>
 
         <fieldset ng-disabled="regIsClosed">
-
+        <!--
         <div class="field">
           <label> Email </label>
           <input type="email"
@@ -104,15 +104,137 @@
         </div>
 
         <br>
-
-        <div class="field" ng-hide="regIsClosed">
-          <button type="submit"
-                  class="fluid ui purple button"
-                  ng-click="submitForm()">
-            Submit
-          </button>
+        -->
+        <!-- user type -->
+        <div class="field">
+        	<center>
+        		<input type="radio" name="type" variable="type.hacker" ng-model="user.profile.type"> Hacker
+        		<input type="radio" name="type" variable="type.mentor" ng-model="user.profile.type"> Mentor
+        		<input type="radio" name="type" variable="type.partner" ng-model="user.profile.type"> Partner
+        		<input type="radio" name="type" variable="type.organizer" ng-model="user.profile.type"> Organiser
+        	</center>
+        </div>
+        <!-- Name -->
+        <div class="field">
+        	<label>Name (First and last)<br></label>
+        	<input type="text" name="name" ng-model="user.profile.name">
         </div>
 
+        <!-- Email -->
+        <div class="field">
+          <label> Email<br></label>
+          <input type="email"
+                 name="email"
+                 disabled="disabled"
+                 ng-model="user.profile.email">
+        </div>
+
+        <!-- Organization-->
+        <div class="field">
+        	<label>Organization<br></label>
+        	<input type="text" ng-model="user.profile.organization">
+        </div>
+        <!-- Picture -->
+        <div class="field">
+        	<label>Picture upload<br></label>
+        	<input type="file" name="picture" ng-model="user.profile.picture">
+        	<button type="button" ng-click="uploadPicture()">+</button>
+        </div>
+        <!-- Social media -->
+        <label>Social media URL links (optional)</label>
+        <center>
+        	<!-- Linkedin-->
+        	<div class="field">		
+        		<table class="table">
+        			<th>
+        				<label>Linkedin</label>
+        				<img src="http://iconshow.me/media/images/ui/ios7-icons/png/512/social-linkedin.png" height="32" width="32">
+        				<input type="text" ng-model="user.profile.linkedin">
+        			</th>
+        			<!-- Facebook-->
+        			<th>
+        				<label>Facebook</label>
+        				<img src="https://image.freepik.com/free-icon/facebook-logo_318-49940.jpg" height="32" width="32">
+        				<input type="text" ng-model="user.profile.facebook">
+        			</th>
+        			<!-- Twitter-->
+        			<th>
+        				<label>Twitter</label>
+        				<img src="https://image.freepik.com/free-icon/twitter-logo_318-40209.jpg" height="32" width="32">
+        				<input type="text" ng-model="user.profile.twitter">
+        			</th>
+        			<!-- GitHub-->
+        			<th>
+        				<label>GitHub</label>
+        				<img src="https://image.flaticon.com/icons/svg/25/25231.svg" height="32" width="32">
+        				<input type="text" ng-model="user.profile.github">
+        			</th>
+        			<!-- Website-->
+        			<th>
+        				<label>Website</label>
+        				<img src="https://png.icons8.com/metro/1600/domain.png" height="32" width="32">
+        				<input type="text" ng-model="user.profile.website">
+        			</th>
+        		</table>
+        	</div>
+        </center>
+        <!-- Motive -->
+        <div class="field">
+        	<label>Why are you attending Fénixhack?<br></label>
+        	<textarea ng-model="user.profile.motive"></textarea>
+        </div>
+        <!-- Area of activity -->
+        <div class="field">
+        	<table class="table">
+        	<label>Pick one category that best describes you field of activity <br></label>
+        	<table class="table area">
+        		<tr>		
+        			<td><input type="radio" variable="area.design" ng-model="user.profile.area">Design</td>
+        			<td><input type="radio" variable="area.marketing" ng-model="user.profile.area"> Marketing</td>
+        			<td><input type="radio" variable="area.business" ng-model="user.profile.area"> Business</td>
+				</tr>
+				<tr>	
+        			<td><input type="radio" variable="area.software" ng-model="user.profile.area"> Software</td>
+        			<td><input type="radio" variable="area.hardware" ng-model="user.profile.area"> Hardware</td>
+       				<td><input type="radio" variable="area.natural-sciences" ng-model="user.profile.area"> Natural Sciences</td>
+       			</tr>
+       			<tr>
+       				<td><input type="radio" variable="area.humanities" ng-model="user.profile.area"> Humanities</td>
+       				<td><input type="radio" variable="area.media" ng-model="user.profile.area"> Media</td>
+        		</tr>
+        	</table>
+        	<div ng-show="user.profile.area">
+        		<b>hey</b>
+        	</div>
+        </div>
+        <!-- Idea? -->
+        <div class="field">
+        	<label>Do you have an idea to register?</label>
+        	<br>
+        	<table class="table">
+        		<input type="radio" name="idea" variable="yes" ng-model="hasIdea"> Yes
+        			<input type="radio" name="idea" variable="no"  ng-model="hasIdea"> No
+        	</table>
+        </div> 
+        <!-- Idea description-->
+        <div ng-show="yes">
+        	<div class="field">
+        		<label>Tell us about your idea (max 250 words)<br></label>
+        		<textarea ng-model="user.profile.idea_description"></textarea>
+       		</div>
+        <!-- Idea name-->
+        	<div class="field">
+        		<label>How would you like to name your idea?<br></label>
+        		<input type="text" ng-model="user.profile.idea_name">
+        	</div>
+        <!-- Submit -->
+        	<div class="field" ng-hide="regIsClosed">
+          <button type="submit"
+                  class="fluid ui purple button"
+                  ng-click="submitForm()">Submit
+          	</button>
+        	</div>
+   		</div>
         </fieldset>
       </div>
     </div>

@@ -85,6 +85,22 @@ angular.module('reg')
           });
       }
 
+      function uploadPicture() {
+        .updateProfile(Session.getUserId(), $scope.user.profile);
+        .success(function(data) {
+          sweetAlert({
+            title: "Sweet",
+            text: "Your picture was uploaded.",
+            type: "success",
+            confirmButtonColor: "#e76482"
+          }, function () {
+            title: "Oh no!",
+            text: "Something went wrong while uploading your picture!",
+            type: "error",
+            confirmButtonColor: "#e76482"
+        });
+      }
+
       function isMinor() {
         return !$scope.user.profile.adult;
       }
