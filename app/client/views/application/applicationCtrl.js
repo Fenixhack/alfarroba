@@ -12,7 +12,6 @@ angular.module('reg')
 
       // Set up the user
       $scope.user = currentUser.data;
-      console.log(currentUser)
       // Is the student from MIT?
       $scope.isMitStudent = $scope.user.email.split('@')[1] == 'mit.edu';
 
@@ -68,7 +67,6 @@ angular.module('reg')
       }
 
       function _updateUser(e){
-        var firstTime = (!currentUser.status.completedProfile);
         UserService
           .updateProfile(Session.getUserId(), $scope.user.profile)
           .success(function(data){
@@ -78,11 +76,8 @@ angular.module('reg')
               type: "success",
               confirmButtonColor: "#e76482"
             }, function(){
-              if(firstTime){
-                $state.go('app.dashboard');
-              }else{
-                $state.go('app.dashboard');
-              }
+              $rootScope.currentUser = data;
+              $state.go('app.dashboard');
             });
           })
           .error(function(res){
