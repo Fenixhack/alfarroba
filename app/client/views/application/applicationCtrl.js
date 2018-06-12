@@ -12,7 +12,6 @@ angular.module('reg')
 
       // Set up the user
       $scope.user = currentUser.data;
-
       // Is the student from MIT?
       $scope.isMitStudent = $scope.user.email.split('@')[1] == 'mit.edu';
 
@@ -77,6 +76,7 @@ angular.module('reg')
               type: "success",
               confirmButtonColor: "#e76482"
             }, function(){
+              $rootScope.currentUser = data;
               $state.go('app.dashboard');
             });
           })
