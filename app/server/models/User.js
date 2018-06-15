@@ -223,10 +223,10 @@ var schema = new mongoose.Schema({
   //   max: 140,
   // },
 
-  teamCode: [{
+  teamCode: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Team'
-  }],
+  },
 
   verified: {
     type: Boolean,

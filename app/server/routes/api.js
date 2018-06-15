@@ -1,5 +1,6 @@
 var UserController = require('../controllers/UserController');
 var SettingsController = require('../controllers/SettingsController');
+var TeamController = require('../controllers/TeamController');
 
 var request = require('request');
 
@@ -441,4 +442,19 @@ module.exports = function(router) {
     SettingsController.updateField('allowMinors', allowMinors, defaultResponse(req, res));
   });
 
+
+  // ---------------------------------------------
+  // Users
+  // ---------------------------------------------
+
+  /**
+   * Get a team.
+   *
+   * res: {
+   *   emails: [String]
+   * }
+   */
+  router.get('/teams/:id', isLoggedIn, function(req, res){
+    TeamController.getTeam(req.params.id, defaultResponse(req, res));
+  });
 };

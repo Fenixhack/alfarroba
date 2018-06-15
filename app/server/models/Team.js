@@ -13,7 +13,7 @@ var schema = new mongoose.Schema({
   },
 
   description: {
-    type: Text
+    type: String
   }
 });
 console.log("foo");
