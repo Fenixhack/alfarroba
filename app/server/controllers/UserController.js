@@ -465,6 +465,7 @@ UserController.createOrJoinTeam = function(id, code, callback){
     if (!teams.length) {
       team = new Team();
       team.name = code;
+      team.save();
     } else {
       team = teams[0];
     }
@@ -472,7 +473,7 @@ UserController.createOrJoinTeam = function(id, code, callback){
     User.findOneAndUpdate({
       _id: id,
       verified: true
-    },{
+    }, {
       $set: {
         teamCode: team
       }

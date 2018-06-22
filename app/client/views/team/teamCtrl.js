@@ -19,8 +19,7 @@ angular.module('reg')
         TeamService
           .get($scope.user.teamCode)
           .success(function(team) {
-            console.log(team);
-            $scope.team = team;
+            $scope.team = team.name;
           });
       }
 
