@@ -9,9 +9,9 @@ angular.module('reg')
     'Session',
     'UserService',
     function($scope, $rootScope, $state, $http, currentUser, Settings, Session, UserService){
-
       // Set up the user
       $scope.user = currentUser.data;
+      console.log($scope.user)
       // Is the student from MIT?
       $scope.isMitStudent = $scope.user.email.split('@')[1] == 'mit.edu';
 

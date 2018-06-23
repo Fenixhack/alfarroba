@@ -202,7 +202,7 @@ var schema = new mongoose.Schema({
     required: true,
     default: 'hacker',
     enum: {
-      values: ['hacker', 'mentor', 'partner', 'organizer']
+      values: ['hacker', 'mentor', 'partner', 'organiser']
     }
   },
 

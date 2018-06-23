@@ -13,11 +13,12 @@
         <div ng-show="user.status.completedProfile" class="divided title">Basic Information</div>
         <div ng-show="!user.status.completedProfile" class="divided title">Please finish your registration</div>
       
+
+
+        <div class="field">
+        <label>Role</label>
         <div class="ui grid">
-
-
-
-        <div id="role_selection" class="ui radio checkbox four wide column">
+        <div  class="ui radio checkbox four wide column">
           <input id="hacker_role" type="radio" name="radio" ng-model="user.role" value="hacker">
           <label for="hacker_role"> Hacker</label>
         </div>
@@ -32,6 +33,7 @@
         <div class="ui radio checkbox four wide column">
           <input id="organiser_role" type="radio" name="radio" ng-model="user.role" value="organiser">
           <label for="organiser_role"> Organiser</label>
+        </div>
         </div>
         </div>
 
