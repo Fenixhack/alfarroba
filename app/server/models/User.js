@@ -6,18 +6,67 @@ var mongoose   = require('mongoose'),
 
 var profile = {
 
-  // Basic info
+  // -------------------- These are used -------------------- 
+    role: {
+    type: String,
+    required: true,
+    default: 'hacker',
+    enum: {
+      values: ['hacker', 'mentor', 'partner', 'organiser']
+    }
+  },
   name: {
     type: String,
     min: 1,
     max: 100,
   },
 
-  adult: {
-    type: Boolean,
-    required: true,
-    default: false,
+  occupation: String,
+  organization: String,
+  location:String,
+
+  categoryOfActivity: [String],
+
+
+
+  // Not needed
+  // adult: {
+  //   type: Boolean,
+  //   required: true,
+  //   default: false,
+  // },
+
+  dietaryRestrictions: [String],
+
+
+
+  shirtSize: {
+    type: String,
+    enum: {
+      values: 'S M L XL'.split(' ')
+    }
   },
+
+  needsReimbursement: Boolean,
+
+  github: String,
+  twitter: String,
+  linkedin: String,
+  website: String,
+
+  notes: String,
+
+
+// -------------------- These are not used, but will be later -------------------- 
+  gender: {
+    type: String,
+    enum : {
+      values: 'M F O N'.split(' ')
+    }
+  },
+
+  phoneNumber: String,
+  studying: Boolean,
 
   school: {
     type: String,
@@ -28,9 +77,10 @@ var profile = {
   graduationYear: {
     type: String,
     enum: {
-      values: '2016 2017 2018 2019'.split(' '),
+      values: '2018 2019 2020 2021 2022 2023'.split(' '),
     }
   },
+  major: String,
 
   description: {
     type: String,
@@ -44,36 +94,18 @@ var profile = {
     max: 1500
   },
 
-  // Social media info not required
-  twitterUrl: {
-    type: String,
-    min: 1,
-    max: 150,
-  },
-  facebookUrl: {
-    type: String,
-    min: 1,
-    max: 150,
-  },
-  githubUrl: {
-    type: String,
-    min: 1,
-    max: 150,
-  },
-  linkedinUrl: {
-    type: String,
-    min: 1,
-    max: 150,
-  },
+  wantsHardware: Boolean,
+  hardware: String,
 
-  // Optional info for demographics
-  gender: {
+  idea: Boolean,
+  ideaDescription: {
     type: String,
-    enum : {
-      values: 'M F O N'.split(' ')
-    }
+    min: 0,
+    max: 1500
   },
+  ideaName: String,  
 
+  
 };
 
 // Only after confirmed
@@ -197,14 +229,7 @@ var schema = new mongoose.Schema({
     default: false,
   },
 
-  role: {
-    type: String,
-    required: true,
-    default: 'hacker',
-    enum: {
-      values: ['hacker', 'mentor', 'partner', 'organiser']
-    }
-  },
+
 
   timestamp: {
     type: Number,

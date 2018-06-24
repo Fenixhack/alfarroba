@@ -13,15 +13,15 @@ angular.module('reg')
       $scope.user = currentUser.data;
       console.log($scope.user)
       // Is the student from MIT?
-      $scope.isMitStudent = $scope.user.email.split('@')[1] == 'mit.edu';
+      // $scope.isMitStudent = $scope.user.email.split('@')[1] == 'mit.edu';
 
-      // If so, default them to adult: true
-      if ($scope.isMitStudent){
-        $scope.user.profile.adult = true;
-      }
+      // // If so, default them to adult: true
+      // if ($scope.isMitStudent){
+      //   $scope.user.profile.adult = true;
+      // }
 
       // Populate the school dropdown
-      populateSchools();
+      // populateSchools();
       _setupForm();
 
       $scope.regIsClosed = Date.now() > Settings.data.timeClose;
@@ -29,42 +29,42 @@ angular.module('reg')
       /**
        * TODO: JANK WARNING
        */
-      function populateSchools(){
-        $http
-          .get('/assets/schools.json')
-          .then(function(res){
-            var schools = res.data;
-            var email = $scope.user.email.split('@')[1];
+      // function populateSchools(){
+      //   $http
+      //     .get('/assets/schools.json')
+      //     .then(function(res){
+      //       var schools = res.data;
+      //       var email = $scope.user.email.split('@')[1];
 
-            if (schools[email]){
-              $scope.user.profile.school = schools[email].school;
-              $scope.autoFilledSchool = true;
-            }
-          });
+      //       if (schools[email]){
+      //         $scope.user.profile.school = schools[email].school;
+      //         $scope.autoFilledSchool = true;
+      //       }
+      //     });
 
-        $http
-          .get('/assets/schools.csv')
-          .then(function(res){
-            $scope.schools = res.data.split('\n');
-            $scope.schools.push('Other');
+      //   $http
+      //     .get('/assets/schools.csv')
+      //     .then(function(res){
+      //       $scope.schools = res.data.split('\n');
+      //       $scope.schools.push('Other');
 
-            var content = [];
+      //       var content = [];
 
-            for(i = 0; i < $scope.schools.length; i++) {
-              $scope.schools[i] = $scope.schools[i].trim();
-              content.push({title: $scope.schools[i]})
-            }
+      //       for(i = 0; i < $scope.schools.length; i++) {
+      //         $scope.schools[i] = $scope.schools[i].trim();
+      //         content.push({title: $scope.schools[i]})
+      //       }
 
-            $('#school.ui.search')
-              .search({
-                source: content,
-                cache: true,
-                onSelect: function(result, response) {
-                  $scope.user.profile.school = result.title.trim();
-                }
-              })
-          });
-      }
+      //       $('#school.ui.search')
+      //         .search({
+      //           source: content,
+      //           cache: true,
+      //           onSelect: function(result, response) {
+      //             $scope.user.profile.school = result.title.trim();
+      //           }
+      //         })
+      //     });
+      // }
 
       function _updateUser(e){
         UserService
@@ -111,6 +111,9 @@ angular.module('reg')
         $('.ui.form').form({
           inline: true,
           fields: {
+
+
+
             name: {
               identifier: 'name',
               rules: [
@@ -119,43 +122,43 @@ angular.module('reg')
                   prompt: 'Please enter your name.'
                 }
               ]
-            },
-            school: {
-              identifier: 'school',
-              rules: [
-                {
-                  type: 'empty',
-                  prompt: 'Please enter your school name.'
-                }
-              ]
-            },
-            year: {
-              identifier: 'year',
-              rules: [
-                {
-                  type: 'empty',
-                  prompt: 'Please select your graduation year.'
-                }
-              ]
-            },
-            gender: {
-              identifier: 'gender',
-              rules: [
-                {
-                  type: 'empty',
-                  prompt: 'Please select a gender.'
-                }
-              ]
-            },
-            adult: {
-              identifier: 'adult',
-              rules: [
-                {
-                  type: 'allowMinors',
-                  prompt: 'You must be an adult, or an MIT student.'
-                }
-              ]
             }
+            // school: {
+            //   identifier: 'school',
+            //   rules: [
+            //     {
+            //       type: 'empty',
+            //       prompt: 'Please enter your school name.'
+            //     }
+            //   ]
+            // },
+            // year: {
+            //   identifier: 'year',
+            //   rules: [
+            //     {
+            //       type: 'empty',
+            //       prompt: 'Please select your graduation year.'
+            //     }
+            //   ]
+            // },
+            // gender: {
+            //   identifier: 'gender',
+            //   rules: [
+            //     {
+            //       type: 'empty',
+            //       prompt: 'Please select a gender.'
+            //     }
+            //   ]
+            // },
+            // adult: {
+            //   identifier: 'adult',
+            //   rules: [
+            //     {
+            //       type: 'allowMinors',
+            //       prompt: 'You must be an adult, or an MIT student.'
+            //     }
+            //   ]
+            // }
           }
         });
       }

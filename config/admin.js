@@ -16,7 +16,7 @@ User
       u.password = User.generateHash(ADMIN_PASSWORD);
       u.admin = true;
       u.verified = true;
-      u.role = 'organiser';
+      u.profile.role = 'organiser';
 
       u.save(function(err){
         if (err){
