@@ -16,25 +16,29 @@
 
 
         <div class="field">
-        <label>Role</label>
-        <div class="ui grid">
-        <div  class="ui radio checkbox four wide column">
-          <input id="hacker_role" type="radio" name="radio" ng-model="user.profile.role" value="hacker">
-          <label for="hacker_role"> Hacker</label>
-        </div>
-        <div class="ui radio checkbox four wide column">
-          <input id="mentor_role" type="radio" name="radio" ng-model="user.profile.role" value="mentor">
-          <label for="mentor_role"> Mentor</label>
-        </div>
-        <div class="ui radio checkbox four wide column">
-          <input id="partner_role" type="radio" name="radio" ng-model="user.profile.role" value="partner">
-          <label for="partner_role"> Partner</label>
-        </div>
-        <div class="ui radio checkbox four wide column">
-          <input id="organiser_role" type="radio" name="radio" ng-model="user.profile.role" value="organiser">
-          <label for="organiser_role"> Organiser</label>
-        </div>
-        </div>
+          <label>Role</label>
+          <div ng-show="!user.status.admitted" class="ui grid">
+            <div  class="ui radio checkbox four wide column">
+              <input id="hacker_role" type="radio" name="radio" ng-model="user.profile.role" value="hacker">
+              <label for="hacker_role"> Hacker</label>
+            </div>
+            <div class="ui radio checkbox four wide column">
+              <input id="mentor_role" type="radio" name="radio" ng-model="user.profile.role" value="mentor">
+              <label for="mentor_role"> Mentor</label>
+            </div>
+            <div class="ui radio checkbox four wide column">
+              <input id="partner_role" type="radio" name="radio" ng-model="user.profile.role" value="partner">
+              <label for="partner_role"> Partner</label>
+            </div>
+            <div class="ui radio checkbox four wide column">
+              <input id="organiser_role" type="radio" name="radio" ng-model="user.profile.role" value="organiser">
+              <label for="organiser_role"> Organiser</label>
+            </div>
+          </div>
+          <div style="text-transform: capitalize;" ng-show="user.status.admitted">
+            {{user.profile.role}}
+          </div>
+        
         </div>
          
           
@@ -50,10 +54,23 @@
         </div>
 
         <div class="field">
-          <label> Full Name </label>
+          <label> Full Name (required)</label>
           <input type="text"
                  name="name"
                  ng-model="user.profile.name">
+        </div>
+
+        <div class="field">
+          <label> Occupation </label>
+          <input type="text"
+                 name="occupation"
+                 ng-model="user.profile.occupation">
+        </div>
+        <div class="field">
+          <label> Organization </label>
+          <input type="text"
+                 name="occupation"
+                 ng-model="user.profile.organization">
         </div>
 
 <!--         <div class="field" ng-show="autoFilledSchool">
@@ -124,24 +141,70 @@
         </div>
         </div>
 
+      <div class="inline field">
+        <label> Categories that best describes your area </label>
+      </div>
+        <label ng-repeat="item in activities">
+          <div class="ui checkbox">
+            <input type="checkbox" name="{{item.name}}" id="{{item.name}}" ng-model="item.checked" ng-change="selectedActivity()">
+            <label for="{{item.name}}">{{item.name}}</label>
+          </div>
+        </label>
+      <div class="field">
+        <label> </label>
+      </div>
 
+          <div class="field">
+            <label> Shirt Size (required) </label>
+<!--             <p>
+              Let's get you some swag!
+            </p> -->
+            <select
+              name="shirt"
+              ng-model="user.profile.shirtSize"
+              required>
+              <option value="">Shirt Size</option>
+              <option value="S">Small</option>
+              <option value="M">Medium</option>
+              <option value="L">Large</option>
+              <option value="XL">X-Large</option>
+            </select>
+          </div>
+        
 
         <div class="field">
+            <label> Dietary Restrictions </label>
+            <p>
+              If your restriction is not included here, please let us know in the additional notes at the bottom.
+            </p>
+          </div>
+        <div class="inline fields">
+            <div class="field"
+              ng-repeat="item in dietaryRestrictions">
+
+              <div class="ui checkbox">
+                <input type="checkbox" name="{{item.name}}" id="{{item.name}}" ng-model="item.checked" ng-change="selectedDietary()" />
+                <label for="{{item.name}}">{{item.name}}</label>
+              </div>
+
+            </div>
+          </div>
+<!--         <div class="field">
           <label>I would describe myself as a...</label>
           <input type="text"
                  placeholder="Designer, Data Scientist, iOS Wizard, Hacker Extraordinaire"
                  ng-model="user.profile.description">
-        </div>
+        </div> -->
 
-        <div class="field">
+<!--         <div class="field">
           <label>
               What would you like to learn or get out of HackMIT? (optional)
           </label>
           <textarea ng-model="user.profile.essay">
           </textarea>
-        </div>
+        </div> -->
 
-        <div class="field"
+<!--         <div class="field"
              ng-hide="isMitStudent">
           <p>
             Because of limitations imposed by MIT, we are not legally allowed to host
@@ -156,15 +219,17 @@
             <input type="checkbox" id="adult" ng-model="user.profile.adult">
             <label for="adult">I am 18 or older.</label>
           </div>
-        </div>
+        </div> -->
 
         <br>
+        
 
         <div class="field" ng-hide="regIsClosed">
-          <button type="submit"
-                  class="fluid ui purple button"
-                  ng-click="submitForm()">
+          <button ng-show="!user.status.completedProfile" type="submit" class="fluid ui purple button" ng-click="submitForm()">
             Submit
+          </button>
+          <button ng-show="user.status.completedProfile" type="submit" class="fluid ui green button" ng-click="submitForm()">
+            Update
           </button>
         </div>
 

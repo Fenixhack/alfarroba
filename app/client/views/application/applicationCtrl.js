@@ -8,7 +8,9 @@ angular.module('reg')
     'settings',
     'Session',
     'UserService',
-    function($scope, $rootScope, $state, $http, currentUser, Settings, Session, UserService){
+    '$filter',
+
+    function($scope, $rootScope, $state, $http, currentUser, Settings, Session, UserService, $filter){
       // Set up the user
       $scope.user = currentUser.data;
       console.log($scope.user)
@@ -25,6 +27,79 @@ angular.module('reg')
       _setupForm();
 
       $scope.regIsClosed = Date.now() > Settings.data.timeClose;
+
+//-------------- Activities ----------
+      $scope.activities = [
+        {name: "Design", checked:false},
+        {name: "Software", checked:false},
+        {name: "Humanities", checked:false},
+        {name: "Marketing", checked:false},
+        {name: "Hardware", checked:false},
+        {name: "Media", checked:false},
+        {name: "Business", checked:false},
+        {name: "Natural Sciences", checked:false}
+      ]
+
+
+      if ($scope.user.profile.activities){
+        $scope.activities = $scope.activities.map(function(a){
+          if ($scope.user.profile.activities.indexOf(a.name)>-1){
+            a.checked=true;
+          }
+          return a;
+        });
+      }
+      $scope.selectedActivity = function () {
+          $scope.user.profile.activities = $filter('filter')($scope.activities, {checked: true}).map(function (a) {
+            return a.name;
+          }).sort();
+      }
+
+
+      // ------------------------------- ------------------------------- 
+
+
+
+      // ------------------------------- dietaryRestrictions ------------------------------- 
+
+
+
+      $scope.dietaryRestrictions = [
+        {name: 'Vegetarian', checked:false},
+        {name: 'Vegan', checked:false},
+        {name: 'Halal', checked:false},
+        {name: 'Kosher', checked:false},
+        {name: 'Nut Allergy', checked:false}
+       
+      ]
+
+
+      if ($scope.user.profile.dietaryRestrictions){
+        $scope.dietaryRestrictions = $scope.dietaryRestrictions.map(function(a){
+          if ($scope.user.profile.dietaryRestrictions.indexOf(a.name)>-1){
+            a.checked=true;
+          }
+          return a;
+        });
+      }
+      $scope.selectedDietary = function () {
+          $scope.user.profile.dietaryRestrictions = $filter('filter')($scope.dietaryRestrictions, {checked: true}).map(function (a) {
+            return a.name;
+          }).sort();
+      }
+
+      // All this just for dietary restriction checkboxes fml
+
+
+
+      // $scope.selectedDietary = function () {
+      //     $scope.user.profile.dietaryRestrictions = $filter('filter')($scope.dietaryRestrictions, {checked: true}).map(function (a) {
+      //       return a.name;
+      //     }).sort();
+      // }
+
+
+      // ------------------------------- ------------------------------- 
 
       /**
        * TODO: JANK WARNING
@@ -112,7 +187,15 @@ angular.module('reg')
           inline: true,
           fields: {
 
-
+          shirt: {
+              identifier: 'shirt',
+              rules: [
+                {
+                  type: 'empty',
+                  prompt: 'Please give us a shirt size!'
+                }
+              ]
+            },
 
             name: {
               identifier: 'name',
