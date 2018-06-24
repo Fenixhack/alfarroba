@@ -45,6 +45,17 @@
 
         <fieldset ng-disabled="regIsClosed">
 
+          <div class="">
+            <input type="checkbox" id="hacker" ng-model="user.role.hacker">
+            <label for="hacker"> Hacker </label>
+            <input type="checkbox" id="mentor" ng-model="user.role.mentor">
+            <label for="mentor"> Mentor </label>
+            <input type="checkbox" id="partner" ng-model="user.role.partner">
+            <label for="partner"> Partner </label>
+            <input type="checkbox" id="organizer" ng-model="user.role.organizer">
+            <label for="organizer"> Organizer </label>
+          </div>
+
         <div class="field">
           <label> Email </label>
           <input type="email"
