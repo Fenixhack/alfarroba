@@ -27,7 +27,39 @@ var profile = {
 
   activities: [String],
 
+  idea:{
+    type:Boolean,
+    default:false
+  },
+  ideaDescription: {
+    type: String,
+    min: 0,
+    max: 1500
+  },
+  ideaName: String,  
 
+  haveTeam:{
+    type:Boolean,
+    default:false
+  },
+
+  // -------- Mentor stuff
+  mentorArea:String,
+  
+  mentorAvailableSaturday:{
+    type:Boolean,
+    default:false
+  },
+
+  mentorAvailableRemote:{
+    type:Boolean,
+    default:false
+  },
+  // -------- 
+ // -------- Partner stuff
+  partnerEntity:String,
+
+  // -------- 
 
   // Not needed
   // adult: {
@@ -49,6 +81,7 @@ var profile = {
 
   needsReimbursement: Boolean,
 
+  facebook: String,
   github: String,
   twitter: String,
   linkedin: String,
@@ -97,13 +130,6 @@ var profile = {
   wantsHardware: Boolean,
   hardware: String,
 
-  idea: Boolean,
-  ideaDescription: {
-    type: String,
-    min: 0,
-    max: 1500
-  },
-  ideaName: String,  
 
   
 };

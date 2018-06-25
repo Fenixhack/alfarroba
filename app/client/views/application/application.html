@@ -19,19 +19,19 @@
           <label>Role</label>
           <div ng-show="!user.status.admitted" class="ui grid">
             <div  class="ui radio checkbox four wide column">
-              <input id="hacker_role" type="radio" name="radio" ng-model="user.profile.role" value="hacker">
+              <input id="hacker_role" type="radio" name="role_radio" ng-model="user.profile.role" value="hacker">
               <label for="hacker_role"> Hacker</label>
             </div>
             <div class="ui radio checkbox four wide column">
-              <input id="mentor_role" type="radio" name="radio" ng-model="user.profile.role" value="mentor">
+              <input id="mentor_role" type="radio" name="role_radio" ng-model="user.profile.role" value="mentor">
               <label for="mentor_role"> Mentor</label>
             </div>
             <div class="ui radio checkbox four wide column">
-              <input id="partner_role" type="radio" name="radio" ng-model="user.profile.role" value="partner">
+              <input id="partner_role" type="radio" name="role_radio" ng-model="user.profile.role" value="partner">
               <label for="partner_role"> Partner</label>
             </div>
             <div class="ui radio checkbox four wide column">
-              <input id="organiser_role" type="radio" name="radio" ng-model="user.profile.role" value="organiser">
+              <input id="organiser_role" type="radio" name="role_radio" ng-model="user.profile.role" value="organiser">
               <label for="organiser_role"> Organiser</label>
             </div>
           </div>
@@ -67,11 +67,101 @@
                  name="occupation"
                  ng-model="user.profile.occupation">
         </div>
+
         <div class="field">
           <label> Organization </label>
           <input type="text"
                  name="occupation"
                  ng-model="user.profile.organization">
+        </div>
+
+        <div class="field">
+          <label> Where do you come from for this event (location)? </label>
+          <input type="text"
+                 name="location"
+                 ng-model="user.profile.location">
+        </div>
+
+        <div ng-show="user.profile.role=='hacker'">
+          <div class="field">
+            <label> Do you already have an idea or project? </label>
+            <div  class="ui radio checkbox ">
+              <input id="yes_idea" type="radio" name="idea_radio" ng-model="user.profile.idea" ng-value="true">
+              <label for="yes_idea"> Yes</label>
+            </div>
+            <div class="ui radio checkbox ">
+              <input id="no_idea" type="radio" name="idea_radio" ng-model="user.profile.idea" ng-value="false">
+              <label for="no_idea"> No</label>
+            </div>
+          </div>
+
+          <div class="field" ng-show="user.profile.idea">
+            <label> Tell us about your idea or project (1500 characters maximum limit) </label>
+            <textarea type="text"
+                   name="ideaDescription"
+                   ng-model="user.profile.ideaDescription"></textarea>
+          </div>
+          <div class="field" ng-show="user.profile.idea">
+            <label> How would name your idea or project? </label>
+            <input type="text"
+                   name="ideaName"
+                   ng-model="user.profile.ideaName">
+          </div>
+
+          <div class="field">
+            <label> Do you already have a team? </label>
+            <div  class="ui radio checkbox ">
+              <input id="yes_haveTeam" type="radio" name="haveTeam_radio" ng-model="user.profile.haveTeam" ng-value="true">
+              <label for="yes_haveTeam"> Yes</label>
+            </div>
+            <div class="ui radio checkbox ">
+              <input id="no_haveTeam" type="radio" name="haveTeam_radio" ng-model="user.profile.haveTeam" ng-value="false">
+              <label for="no_haveTeam"> No</label>
+            </div>
+          </div>
+
+        </div>
+
+        <div ng-show="user.profile.role=='mentor'">
+          <div class="field" >
+            <label> What area would you like to advise? </label>
+            <input type="text"
+                   name="mentorArea"
+                   ng-model="user.profile.mentorArea">
+          </div>
+          <div class="field">
+            <label> Are you available to advise on the event on Saturday the 14th of July? </label>
+            <div  class="ui radio checkbox ">
+              <input id="yes_mentorAvailableSaturday" type="radio" name="mentorAvailableSaturday_radio" ng-model="user.profile.mentorAvailableSaturday" ng-value="true">
+              <label for="yes_mentorAvailableSaturday"> Yes</label>
+            </div>
+            <div class="ui radio checkbox ">
+              <input id="no_mentorAvailableSaturday" type="radio" name="mentorAvailableSaturday_radio" ng-model="user.profile.mentorAvailableSaturday" ng-value="false">
+              <label for="no_mentorAvailableSaturday"> No</label>
+            </div>
+          </div>
+          <div class="field">
+            <label> In complementary terms, are you available to advise remotely? </label>
+            <div  class="ui radio checkbox ">
+              <input id="yes_mentorAvailableRemote" type="radio" name="mentorAvailableRemote_radio" ng-model="user.profile.mentorAvailableRemote" ng-value="true">
+              <label for="yes_mentorAvailableRemote"> Yes</label>
+            </div>
+            <div class="ui radio checkbox ">
+              <input id="no_mentorAvailableRemote" type="radio" name="mentorAvailableRemote_radio" ng-model="user.profile.mentorAvailableRemote" ng-value="false">
+              <label for="no_mentorAvailableRemote"> No</label>
+            </div>
+          </div>
+          
+        </div>
+
+       <div ng-show="user.profile.role=='partner'">
+          <div class="field" >
+            <label> What entity do you intend to represent at the event (formally or informally)? </label>
+            <input type="text"
+                   name="partnerEntity"
+                   ng-model="user.profile.partnerEntity">
+          </div>
+          
         </div>
 
 <!--         <div class="field" ng-show="autoFilledSchool">
