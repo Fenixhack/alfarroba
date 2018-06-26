@@ -28,16 +28,16 @@ gulp.task('js', function () {
     gulp.src(['app/client/src/**/*.js', 'app/client/views/**/*.js'])
       .pipe(sourcemaps.init())
         .pipe(concat('app.js'))
-        .pipe(ngAnnotate())
-        .on('error', swallowError)
-        .pipe(uglify())
+        // .pipe(ngAnnotate())
+        // .on('error', swallowError)
+        // .pipe(uglify())
       .pipe(gulp.dest('app/client/build'));
   } else {
     gulp.src(['app/client/src/**/*.js', 'app/client/views/**/*.js'])
       .pipe(sourcemaps.init())
         .pipe(concat('app.js'))
-        .pipe(ngAnnotate())
-        .on('error', swallowError)
+        // .pipe(ngAnnotate())
+        // .on('error', swallowError)
       .pipe(sourcemaps.write())
       .pipe(gulp.dest('app/client/build'));
   }

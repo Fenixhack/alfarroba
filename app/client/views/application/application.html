@@ -10,11 +10,41 @@
     <div class="column">
       <div class="ui form"
             ng-class="{'loading': loading}">
-
         <div ng-show="user.status.completedProfile" class="divided title">Basic Information</div>
         <div ng-show="!user.status.completedProfile" class="divided title">Please finish your registration</div>
+      
+
+
+        <div class="field">
+          <label>Role</label>
+          <div ng-show="!user.status.admitted" class="ui grid">
+            <div  class="ui radio checkbox four wide column">
+              <input id="hacker_role" type="radio" name="role_radio" ng-model="user.profile.role" value="hacker">
+              <label for="hacker_role"> Hacker</label>
+            </div>
+            <div class="ui radio checkbox four wide column">
+              <input id="mentor_role" type="radio" name="role_radio" ng-model="user.profile.role" value="mentor">
+              <label for="mentor_role"> Mentor</label>
+            </div>
+            <div class="ui radio checkbox four wide column">
+              <input id="partner_role" type="radio" name="role_radio" ng-model="user.profile.role" value="partner">
+              <label for="partner_role"> Partner</label>
+            </div>
+            <div class="ui radio checkbox four wide column">
+              <input id="organiser_role" type="radio" name="role_radio" ng-model="user.profile.role" value="organiser">
+              <label for="organiser_role"> Organiser</label>
+            </div>
+          </div>
+          <div style="text-transform: capitalize;" ng-show="user.status.admitted">
+            {{user.profile.role}}
+          </div>
+        
+        </div>
+         
+          
 
         <fieldset ng-disabled="regIsClosed">
+
 
         <div class="field">
           <label> Email </label>
@@ -25,31 +55,124 @@
         </div>
 
         <div class="field">
-          <label> Full Name </label>
+          <label> Full Name (required)</label>
           <input type="text"
                  name="name"
                  ng-model="user.profile.name">
         </div>
 
-        <div class="field" ng-show="autoFilledSchool">
+        <div class="field">
+          <label> Occupation </label>
+          <input type="text"
+                 name="occupation"
+                 ng-model="user.profile.occupation">
+        </div>
+
+        <div class="field">
+          <label> Organization </label>
+          <input type="text"
+                 name="occupation"
+                 ng-model="user.profile.organization">
+        </div>
+
+        <div class="field">
+          <label> Where do you come from for this event (location)? </label>
+          <input type="text"
+                 name="location"
+                 ng-model="user.profile.location">
+        </div>
+
+        <div ng-show="user.profile.role=='hacker'">
+          <div class="field">
+            <label> Do you already have an idea or project? </label>
+            <div  class="ui radio checkbox ">
+              <input id="yes_idea" type="radio" name="idea_radio" ng-model="user.profile.idea" ng-value="true">
+              <label for="yes_idea"> Yes</label>
+            </div>
+            <div class="ui radio checkbox ">
+              <input id="no_idea" type="radio" name="idea_radio" ng-model="user.profile.idea" ng-value="false">
+              <label for="no_idea"> No</label>
+            </div>
+          </div>
+
+          <div class="field" ng-show="user.profile.idea">
+            <label> Tell us about your idea or project (1500 characters maximum limit) </label>
+            <textarea type="text"
+                   name="ideaDescription"
+                   ng-model="user.profile.ideaDescription"></textarea>
+          </div>
+          <div class="field" ng-show="user.profile.idea">
+            <label> How would name your idea or project? </label>
+            <input type="text"
+                   name="ideaName"
+                   ng-model="user.profile.ideaName">
+          </div>
+
+          <div class="field">
+            <label> Do you already have a team? </label>
+            <div  class="ui radio checkbox ">
+              <input id="yes_haveTeam" type="radio" name="haveTeam_radio" ng-model="user.profile.haveTeam" ng-value="true">
+              <label for="yes_haveTeam"> Yes</label>
+            </div>
+            <div class="ui radio checkbox ">
+              <input id="no_haveTeam" type="radio" name="haveTeam_radio" ng-model="user.profile.haveTeam" ng-value="false">
+              <label for="no_haveTeam"> No</label>
+            </div>
+          </div>
+
+        </div>
+
+        <div ng-show="user.profile.role=='mentor'">
+          <div class="field" >
+            <label> What area would you like to advise? </label>
+            <input type="text"
+                   name="mentorArea"
+                   ng-model="user.profile.mentorArea">
+          </div>
+          <div class="field">
+            <label> Are you available to advise on the event on Saturday the 14th of July? </label>
+            <div  class="ui radio checkbox ">
+              <input id="yes_mentorAvailableSaturday" type="radio" name="mentorAvailableSaturday_radio" ng-model="user.profile.mentorAvailableSaturday" ng-value="true">
+              <label for="yes_mentorAvailableSaturday"> Yes</label>
+            </div>
+            <div class="ui radio checkbox ">
+              <input id="no_mentorAvailableSaturday" type="radio" name="mentorAvailableSaturday_radio" ng-model="user.profile.mentorAvailableSaturday" ng-value="false">
+              <label for="no_mentorAvailableSaturday"> No</label>
+            </div>
+          </div>
+          <div class="field">
+            <label> In complementary terms, are you available to advise remotely? </label>
+            <div  class="ui radio checkbox ">
+              <input id="yes_mentorAvailableRemote" type="radio" name="mentorAvailableRemote_radio" ng-model="user.profile.mentorAvailableRemote" ng-value="true">
+              <label for="yes_mentorAvailableRemote"> Yes</label>
+            </div>
+            <div class="ui radio checkbox ">
+              <input id="no_mentorAvailableRemote" type="radio" name="mentorAvailableRemote_radio" ng-model="user.profile.mentorAvailableRemote" ng-value="false">
+              <label for="no_mentorAvailableRemote"> No</label>
+            </div>
+          </div>
+          
+        </div>
+
+       <div ng-show="user.profile.role=='partner'">
+          <div class="field" >
+            <label> What entity do you intend to represent at the event (formally or informally)? </label>
+            <input type="text"
+                   name="partnerEntity"
+                   ng-model="user.profile.partnerEntity">
+          </div>
+          
+        </div>
+
+      <!-- <div class="field" ng-show="autoFilledSchool">
           <label> School </label>
           <input class="ui input"
                  disabled="disabled"
                  ng-show="autoFilledSchool"
                  ng-model="user.profile.school">
-        </div>
+        </div> -->
 
-        <div class="field" ng-show="!autoFilledSchool">
-          <label> School </label>
-          <div id="school" class="ui search">
-            <div class="ui input">
-              <input class="prompt" type="text" placeholder="School" name="school" ng-model="user.profile.school">
-            </div>
-            <div class="results"></div>
-          </div>
-        </div>
-
-        <div class="field">
+        <!-- <div class="field">
           <label>Graduation Year</label>
           <select
             name="year"
@@ -73,56 +196,135 @@
             <option value="O">Other</option>
             <option value="N">I prefer not to answer.</option>
           </select>
+        </div> -->
+        <div class="field">
+            <label> Social media links</label>
         </div>
 
         <div class="field">
-          <label> Twitter </label>
+        <div class="ui grid">
+          <div  class="four wide column">
+            <label for="twitter"> Twitter</label>
+          </div>
+          <div  class="four wide column">
+            <label for="facebook"> Facebook</label>
+          </div>
+          <div  class="four wide column">
+            <label for="github"> GitHub</label>
+          </div>
+          <div  class="four wide column">
+            <label for="linkedin"> LinkedIn</label>
+          </div>
+
+        </div>
+        
+        <div class="ui grid">
+          <div  class="four wide column">
+            <input type="text" name="twitter" placeholder="https://twitter.com/foobar" ng-model="user.profile.twitter">
+          </div>
+          <div  class="four wide column">
+            <input type="text" name="facebook" placeholder="https://facebook.com/foobar" ng-model="user.profile.facebook">
+          </div>
+          <div  class="four wide column">
+            <input type="text" name="github" placeholder="https://github.com/foobar" ng-model="user.profile.github">
+          </div>
+          <div  class="four wide column">
+            <input type="text" name="linkedin" placeholder="https://linkedin.com/foobar" ng-model="user.profile.linkedin">
+          </div>
+        </div>
+        </div>
+        <div class="field" >
+          <label> Other website you would like to share </label>
           <input type="text"
-                 name="twitterUrl"
-                 placeholder="something@twiter.com"
-                 ng-model="user.profile.twitterUrl">
+                 placeholder="http://www.example.com"
+                 name="website"
+                 ng-model="user.profile.website">
         </div>
+      <div class="inline field">
+        <label> Categories that best describes your area </label>
+      </div>
+
+      <div class="inline fields">
+        <div ng-repeat="item in activities">
+          <div class="ui checkbox">
+            <input type="checkbox" name="{{item.name}}" id="{{item.name}}" ng-model="item.checked" ng-change="selectedActivity()">
+            <label for="{{item.name}}">{{item.name}}</label>
+          </div>
+        </div>
+      <div class="field">
+        <label > Other </label>
+        <!-- <label style="font-weight:100;"> Other </label> -->
+        <input type="text"
+           name="otherActivity"
+           ng-model="otherActivity">
+      </div>
+        
+      </div>
+
+
+
+      <div class="field">
+        <label> </label>
+      </div>
+
+          <div class="field">
+            <label> Shirt Size (required) </label>
+<!--             <p>
+              Let's get you some swag!
+            </p> -->
+            <select
+              name="shirt"
+              ng-model="user.profile.shirtSize"
+              required>
+              <option value="">Shirt Size</option>
+              <option value="S">Small</option>
+              <option value="M">Medium</option>
+              <option value="L">Large</option>
+              <option value="XL">X-Large</option>
+            </select>
+          </div>
+        
 
         <div class="field">
-          <label> Facebook </label>
-          <input type="text"
-                 name="facebookUrl"
-                 placeholder="something@facebook.com"
-                 ng-model="user.profile.facebookUrl">
-        </div>
+            <label> Dietary Restrictions </label>
+            <p>
+              If your restriction is not included here, please let us know in the additional notes at the bottom.
+            </p>
+          </div>
+        <div class="inline fields">
+            <div class="field"
+              ng-repeat="item in dietaryRestrictions">
 
-        <div class="field">
-          <label> GitHub </label>
-          <input type="text"
-                 name="githubUrl"
-                 placeholder="something@github.com"
-                 ng-model="user.profile.githubUrl">
-        </div>
+              <div class="ui checkbox">
+                <input type="checkbox" name="{{item.name}}" id="{{item.name}}" ng-model="item.checked" ng-change="selectedDietary()" />
+                <label for="{{item.name}}">{{item.name}}</label>
+              </div>
 
-        <div class="field">
-          <label> LinkedIn </label>
-          <input type="text"
-                 name="linkedinUrl"
-                 placeholder="something@linkedin.com"
-                 ng-model="user.profile.linkedinUrl">
+            </div>
+            <div class="field">
+              <label > Other </label>
+              <!-- <label style="font-weight:100;"> Other </label> -->
+              <input type="text"
+                 name="otherDietaryRestriction"
+                 ng-model="otherDietaryRestriction">
+            </div>
         </div>
-
-        <div class="field">
+<!--         <div class="field">
           <label>I would describe myself as a...</label>
           <input type="text"
                  placeholder="Designer, Data Scientist, iOS Wizard, Hacker Extraordinaire"
                  ng-model="user.profile.description">
-        </div>
+        </div> -->
 
-        <div class="field">
+<!--         <div class="field">
           <label>
               What would you like to learn or get out of HackMIT? (optional)
           </label>
           <textarea ng-model="user.profile.essay">
           </textarea>
-        </div>
+        </div> -->
 
-        <div class="field"
+<!--         <div class="field"
              ng-hide="isMitStudent">
           <p>
             Because of limitations imposed by MIT, we are not legally allowed to host
@@ -137,15 +339,36 @@
             <input type="checkbox" id="adult" ng-model="user.profile.adult">
             <label for="adult">I am 18 or older.</label>
           </div>
+        </div> -->
+
+        <div class="field">
+          <label> Do you have difficulty paying for your transportation expenses? </label>
+          <p>If so, we will consider our possibilities to help you. It is important to note that there are no guarantees.</p>
+          <div  class="ui radio checkbox ">
+            <input id="yes_needsReimbursement" type="radio" name="needsReimbursement_radio" ng-model="user.profile.needsReimbursement" ng-value="true">
+            <label for="yes_needsReimbursement"> Yes</label>
+          </div>
+          <div class="ui radio checkbox ">
+            <input id="no_needsReimbursement" type="radio" name="needsReimbursement_radio" ng-model="user.profile.needsReimbursement" ng-value="false">
+            <label for="no_needsReimbursement"> No</label>
+          </div>
         </div>
 
+          <div class="field">
+            <label> Would you like to share any comments and / or suggestions? </label>
+            <textarea type="text"
+                   name="notes"
+                   ng-model="user.profile.notes"></textarea>
+          </div>
         <br>
+        
 
         <div class="field" ng-hide="regIsClosed">
-          <button type="submit"
-                  class="fluid ui purple button"
-                  ng-click="submitForm()">
+          <button ng-show="!user.status.completedProfile" type="submit" class="fluid ui purple button" ng-click="submitForm()">
             Submit
+          </button>
+          <button ng-show="user.status.completedProfile" type="submit" class="fluid ui green button" ng-click="submitForm()">
+            Update
           </button>
         </div>
 

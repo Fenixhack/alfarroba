@@ -147,7 +147,7 @@ module.exports = function(router) {
         }
 
         if (user) {
-          hasRole = roles.indexOf(user.role) !== -1;
+          hasRole = roles.indexOf(user.profile.role) !== -1;
           req.user = user;
           if (hasRole) {
             return next();
