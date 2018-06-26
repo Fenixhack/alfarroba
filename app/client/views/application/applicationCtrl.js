@@ -39,6 +39,7 @@ angular.module('reg')
         {name: "Business", checked:false},
         {name: "Natural Sciences", checked:false}
       ]
+      $scope.otherActivity = ""
 
 
       if ($scope.user.profile.activities){
@@ -48,6 +49,13 @@ angular.module('reg')
           }
           return a;
         });
+
+        var allActivity = $scope.activities.map(function (a) {return a.name;})
+        $scope.user.profile.activities.forEach(function (a) {
+          if(allActivity.indexOf(a)==-1){
+            $scope.otherActivity = a;
+          }
+        })
       }
       $scope.selectedActivity = function () {
           $scope.user.profile.activities = $filter('filter')($scope.activities, {checked: true}).map(function (a) {
@@ -67,11 +75,12 @@ angular.module('reg')
       $scope.dietaryRestrictions = [
         {name: 'Vegetarian', checked:false},
         {name: 'Vegan', checked:false},
-        {name: 'Halal', checked:false},
-        {name: 'Kosher', checked:false},
+        // {name: 'Halal', checked:false},
+        // {name: 'Kosher', checked:false},
         {name: 'Nut Allergy', checked:false}
        
       ]
+      $scope.otherDietaryRestriction = ""
 
 
       if ($scope.user.profile.dietaryRestrictions){
@@ -81,12 +90,21 @@ angular.module('reg')
           }
           return a;
         });
+
+        var allDietry = $scope.dietaryRestrictions.map(function (a) {return a.name;})
+        $scope.user.profile.dietaryRestrictions.forEach(function (a) {
+          if(allDietry.indexOf(a)==-1){
+            $scope.otherDietaryRestriction = a;
+          }
+        })
+
       }
       $scope.selectedDietary = function () {
           $scope.user.profile.dietaryRestrictions = $filter('filter')($scope.dietaryRestrictions, {checked: true}).map(function (a) {
             return a.name;
           }).sort();
       }
+      
 
       // All this just for dietary restriction checkboxes fml
 
@@ -142,6 +160,20 @@ angular.module('reg')
       // }
 
       function _updateUser(e){
+        // remove "other",if any, from dietary restrictions
+        $scope.selectedDietary();
+        // re-add it to the list
+        if($scope.otherDietaryRestriction!==""){
+          $scope.user.profile.dietaryRestrictions.push($scope.otherDietaryRestriction)
+        }
+
+        // remove "other",if any, from activities
+        $scope.selectedActivity();
+        // re-add it to the list
+        if($scope.otherActivity!==""){
+          $scope.user.profile.activities.push($scope.otherActivity)
+        }
+
         UserService
           .updateProfile(Session.getUserId(), $scope.user.profile)
           .success(function(data){

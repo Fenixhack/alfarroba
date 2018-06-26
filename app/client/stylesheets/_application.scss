@@ -14,4 +14,10 @@
     cursor: pointer;
   	margin:10px;
   }
+.ui.form .fields {
+    -webkit-flex-wrap: wrap !important;
+    -ms-flex-wrap: wrap !important;
+    flex-wrap: wrap !important;
+}
+
 }

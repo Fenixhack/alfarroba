@@ -164,7 +164,7 @@
           
         </div>
 
-<!--         <div class="field" ng-show="autoFilledSchool">
+      <!-- <div class="field" ng-show="autoFilledSchool">
           <label> School </label>
           <input class="ui input"
                  disabled="disabled"
@@ -197,7 +197,9 @@
             <option value="N">I prefer not to answer.</option>
           </select>
         </div> -->
-
+        <div class="field">
+            <label> Social media links</label>
+        </div>
 
         <div class="field">
         <div class="ui grid">
@@ -231,16 +233,35 @@
           </div>
         </div>
         </div>
-
+        <div class="field" >
+          <label> Other website you would like to share </label>
+          <input type="text"
+                 placeholder="http://www.example.com"
+                 name="website"
+                 ng-model="user.profile.website">
+        </div>
       <div class="inline field">
         <label> Categories that best describes your area </label>
       </div>
-        <label ng-repeat="item in activities">
+
+      <div class="inline fields">
+        <div ng-repeat="item in activities">
           <div class="ui checkbox">
             <input type="checkbox" name="{{item.name}}" id="{{item.name}}" ng-model="item.checked" ng-change="selectedActivity()">
             <label for="{{item.name}}">{{item.name}}</label>
           </div>
-        </label>
+        </div>
+      <div class="field">
+        <label style="font-weight:100;"> Other </label>
+        <input type="text"
+           name="otherActivity"
+           ng-model="otherActivity">
+      </div>
+        
+      </div>
+
+
+
       <div class="field">
         <label> </label>
       </div>
@@ -279,7 +300,13 @@
               </div>
 
             </div>
-          </div>
+            <div class="field">
+              <label style="font-weight:100;"> Other </label>
+              <input type="text"
+                 name="otherDietaryRestriction"
+                 ng-model="otherDietaryRestriction">
+            </div>
+        </div>
 <!--         <div class="field">
           <label>I would describe myself as a...</label>
           <input type="text"
@@ -312,6 +339,25 @@
           </div>
         </div> -->
 
+        <div class="field">
+          <label> Do you have difficulty paying for your transportation expenses? </label>
+          <p>If so, we will consider our possibilities to help you. It is important to note that there are no guarantees.</p>
+          <div  class="ui radio checkbox ">
+            <input id="yes_needsReimbursement" type="radio" name="needsReimbursement_radio" ng-model="user.profile.needsReimbursement" ng-value="true">
+            <label for="yes_needsReimbursement"> Yes</label>
+          </div>
+          <div class="ui radio checkbox ">
+            <input id="no_needsReimbursement" type="radio" name="needsReimbursement_radio" ng-model="user.profile.needsReimbursement" ng-value="false">
+            <label for="no_needsReimbursement"> No</label>
+          </div>
+        </div>
+
+          <div class="field">
+            <label> Would you like to share any comments and / or suggestions? </label>
+            <textarea type="text"
+                   name="notes"
+                   ng-model="user.profile.notes"></textarea>
+          </div>
         <br>
         
 
