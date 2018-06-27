@@ -6,7 +6,7 @@ var mongoose   = require('mongoose'),
 
 var profile = {
 
-  // -------------------- These are used -------------------- 
+  // -------------------- These are used --------------------
     role: {
     type: String,
     required: true,
@@ -36,7 +36,7 @@ var profile = {
     min: 0,
     max: 1500
   },
-  ideaName: String,  
+  ideaName: String,
 
   haveTeam:{
     type:Boolean,
@@ -45,7 +45,7 @@ var profile = {
 
   // -------- Mentor stuff
   mentorArea:String,
-  
+
   mentorAvailableSaturday:{
     type:Boolean,
     default:false
@@ -55,11 +55,11 @@ var profile = {
     type:Boolean,
     default:false
   },
-  // -------- 
+  // --------
  // -------- Partner stuff
   partnerEntity:String,
 
-  // -------- 
+  // --------
 
   // Not needed
   // adult: {
@@ -79,6 +79,7 @@ var profile = {
     }
   },
 
+  needsAccommodation: Boolean,
   needsReimbursement: Boolean,
 
   facebook: String,
@@ -90,7 +91,7 @@ var profile = {
   notes: String,
 
 
-// -------------------- These are not used, but will be later -------------------- 
+// -------------------- These are not used, but will be later --------------------
   gender: {
     type: String,
     enum : {
@@ -131,7 +132,7 @@ var profile = {
   hardware: String,
 
 
-  
+
 };
 
 // Only after confirmed
