@@ -46,8 +46,7 @@ angular.module("reg").controller("ApplicationCtrl", [
             { name: "Communication", checked: false },
             { name: "Natural Sciences", checked: false },
             { name: "Humanities", checked: false },
-            { name: "Engineering", checked: false },
-            { name: "Other", checked: false }
+            { name: "Engineering", checked: false }
         ];
         $scope.otherActivity = "";
 
