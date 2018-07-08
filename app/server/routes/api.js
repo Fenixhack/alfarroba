@@ -283,18 +283,18 @@ module.exports = function(router) {
    * }
    */
   router.put('/users/:id/password', isOwnerOrAdmin, function(req, res){
-    return res.status(304).send();
-    // Currently disable.
-    // var id = req.params.id;
-    // var old = req.body.oldPassword;
-    // var pass = req.body.newPassword;
+    // return res.status(304).send();
+    
+    var id = req.params.id;
+    var old = req.body.oldPassword;
+    var pass = req.body.newPassword;
 
-    // UserController.changePassword(id, old, pass, function(err, user){
-    //   if (err || !user){
-    //     return res.status(400).send(err);
-    //   }
-    //   return res.json(user);
-    // });
+    UserController.changePassword(id, old, pass, function(err, user){
+      if (err || !user){
+        return res.status(400).send(err);
+      }
+      return res.json(user);
+    });
   });
 
   /**
