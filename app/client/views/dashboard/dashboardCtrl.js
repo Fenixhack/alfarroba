@@ -108,6 +108,25 @@ angular.module('reg')
       };
 
 
+$scope.confirmAdmission = function(){
+
+          UserService
+          .updateConfirmation(user._id, {})
+          .success(function(data){
+            sweetAlert({
+              title: "Woo!",
+              text: "You're confirmed!",
+              type: "success",
+              confirmButtonColor: "#e76482"
+            }, function(){
+              $state.go('app.dashboard');
+            });
+          })
+          .error(function(res){
+            sweetAlert("Uh oh!", "Something went wrong.", "error");
+          });
+      };
+
     // ---------------------------------------------------
     // FORCE USER TO COMPLETE REGISTRAION 
     // --------------------------------------------------- 
