@@ -183,8 +183,9 @@
             </h4>
           </div>
 
+               <!-- ui-sref="app.confirmation" -->
           <div class="ui purple button"
-               ui-sref="app.confirmation">
+               ng-click="confirmAdmission()">
             Confirm your spot
           </div>
 
@@ -228,11 +229,11 @@
             ng-bind-html="confirmationText">
           </div>
 
-          <div class="ui purple button"
+<!--           <div class="ui purple button"
                ui-sref="app.confirmation">
             {{pastConfirmation ? 'View' : 'Edit'}} your confirmation information
           </div>
-
+ -->
           <div class="ui red button"
                ng-click="declineAdmission()">
             Sorry, I can't make it
