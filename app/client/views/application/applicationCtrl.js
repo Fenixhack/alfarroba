@@ -13,7 +13,7 @@ angular.module('reg')
     function($scope, $rootScope, $state, $http, currentUser, Settings, Session, UserService, $filter){
       // Set up the user
       $scope.user = currentUser.data;
-      console.log($scope.user)
+      // console.log($scope.user)
       // Is the student from MIT?
       // $scope.isMitStudent = $scope.user.email.split('@')[1] == 'mit.edu';
 
@@ -158,7 +158,7 @@ angular.module('reg')
       //         })
       //     });
       // }
-
+      $scope.acceptTAC = false;
       function _updateUser(e){
         // remove "other",if any, from dietary restrictions
         $scope.selectedDietary();
@@ -213,9 +213,15 @@ angular.module('reg')
         $.fn.form.settings.rules.allowMinors = function (value) {
           return minorsValidation();
         };
+        $.fn.form.settings.rules.acceptTAC = function (value) {
+          if($scope.user.status.completedProfile){
+            return true
+          }else{
+            return $scope.acceptTAC;
+          }
+        };
 
-        // Semantic-UI form validation
-        $('.ui.form').form({
+        $('#mainForm').form({
           inline: true,
           fields: {
 
@@ -228,7 +234,6 @@ angular.module('reg')
                 }
               ]
             },
-
             name: {
               identifier: 'name',
               rules: [
@@ -237,56 +242,89 @@ angular.module('reg')
                   prompt: 'Please enter your name.'
                 }
               ]
+            },
+            tacCheckbox: {
+              identifier: 'tacCheckbox',
+              rules: [
+                {
+                  type: 'acceptTAC',
+                  prompt: 'You must accept to continue.'
+                }
+              ]
             }
-            // school: {
-            //   identifier: 'school',
-            //   rules: [
-            //     {
-            //       type: 'empty',
-            //       prompt: 'Please enter your school name.'
-            //     }
-            //   ]
-            // },
-            // year: {
-            //   identifier: 'year',
-            //   rules: [
-            //     {
-            //       type: 'empty',
-            //       prompt: 'Please select your graduation year.'
-            //     }
-            //   ]
-            // },
-            // gender: {
-            //   identifier: 'gender',
-            //   rules: [
-            //     {
-            //       type: 'empty',
-            //       prompt: 'Please select a gender.'
-            //     }
-            //   ]
-            // },
-            // adult: {
-            //   identifier: 'adult',
-            //   rules: [
-            //     {
-            //       type: 'allowMinors',
-            //       prompt: 'You must be an adult, or an MIT student.'
-            //     }
-            //   ]
-            // }
           }
         });
+
+
       }
 
 
-
       $scope.submitForm = function(){
-        if ($('.ui.form').form('is valid')){
+        if ($('#mainForm').form('is valid')){
           _updateUser();
         }
         else{
           sweetAlert("Uh oh!", "Please Fill The Required Fields", "error");
         }
+      };
+
+      $scope.pass={
+        old:"",
+        new1:"",
+        new2:""
+      }
+      _setupPassForm()
+      function _setupPassForm(){
+        // Semantic-UI form validation
+        $('#changePassForm').form({
+          inline: true,
+          fields: {
+            passwordOld: {
+              identifier  : 'passwordOld',
+              rules: [{
+                  type   : 'empty',
+                  prompt : 'Please your current password.'
+              }]
+            },
+            passwordNew1: {
+              identifier  : 'passwordNew1',
+              rules: [{
+                  type   : 'empty',
+                  prompt : 'Please enter a password.'
+              }]
+            },
+            passwordNew2: {
+              identifier  : 'passwordNew2',
+              rules: [{
+                  type   : 'match[passwordNew1]',
+                  prompt : 'Your passwords do not match.'
+              }]
+            }
+          }
+        });
+      }
+      $scope.changePassword = function(){
+        if ($('#changePassForm').form('is valid')){
+          // _updateUser();
+          // sweetAlert("Uh oh!", "Sweet", "error");
+          UserService
+          .updatePassword(Session.getUserId(), $scope.pass.old,$scope.pass.new1)
+          .success(function(data){
+            sweetAlert({
+              title: "Awesome!",
+              text: "Your password has been saved.",
+              type: "success",
+              confirmButtonColor: "#e76482"
+            });
+          })
+          .error(function(res){
+            sweetAlert("Uh oh!", "Something went wrong.", "error");
+          });
+        }
+        else{
+          sweetAlert("Uh oh!", "Something went wrong", "error");
+        }
+        
       };
 
     }]);

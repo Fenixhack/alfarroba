@@ -34,6 +34,12 @@ angular.module('reg')
         );
       },
 
+      updatePassword: function(id, old, pass){
+        return $http.put(base + id + '/password', {
+          oldPassword:old,
+          newPassword:pass
+        });
+      },
       updateProfile: function(id, profile){
         return $http.put(base + id + '/profile', {
           profile: profile

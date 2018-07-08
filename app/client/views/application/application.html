@@ -8,7 +8,7 @@
   </div>
   <div class="ui stackable page grid">
     <div class="column">
-      <div class="ui form"
+      <div id="mainForm" class="ui form"
             ng-class="{'loading': loading}">
         <div ng-show="user.status.completedProfile" class="divided title">Basic Information</div>
         <div ng-show="!user.status.completedProfile" class="divided title">Please finish your registration</div>
@@ -361,8 +361,10 @@
                    ng-model="user.profile.notes"></textarea>
           </div>
         <br>
-        
-
+        <div ng-show="!user.status.completedProfile" class="ui checkbox field">
+          <input type="checkbox" name="tacCheckbox" id="tacCheckbox" ng-model="acceptTAC">
+          <label for="tacCheckbox">I hearby accept the <a href="">terms and conditions</a> of fenixhack</label>
+        </div>
         <div class="field" ng-hide="regIsClosed">
           <button ng-show="!user.status.completedProfile" type="submit" class="fluid ui purple button" ng-click="submitForm()">
             Submit
@@ -373,6 +375,39 @@
         </div>
 
         </fieldset>
+      </div>
+    </div>
+  </div>
+  <div ng-show="user.status.completedProfile" class="ui stackable page grid">
+    <div class="column">
+      <div id="changePassForm" class="ui form" ng-class="{'loading': loading}">
+        <div  class="divided title">Change password</div>
+        <div class="field">
+          <label> Current password</label>
+          <input type="password"
+                 id="passwordOld"
+                 name="passwordOld"
+                 ng-model="pass.old">
+        </div>
+
+        <div class="field">
+          <label> New password</label>
+          <input type="password"
+                 id="passwordNew1"
+                 name="passwordNew1"
+                 ng-model="pass.new1">
+        </div>
+        <div class="field">
+          <label> New password again </label>
+          <input type="password"
+                 id="passwordNew2"
+                 name="passwordNew2"
+                 ng-model="pass.new2">
+        </div>
+
+        <button type="submit" class="fluid ui purple button" ng-click="changePassword()">
+            Change password
+          </button>
       </div>
     </div>
   </div>
