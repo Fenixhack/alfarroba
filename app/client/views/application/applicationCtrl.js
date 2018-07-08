@@ -74,10 +74,10 @@ angular.module('reg')
 
       $scope.dietaryRestrictions = [
         {name: 'Vegetarian', checked:false},
-        {name: 'Vegan', checked:false},
+        {name: 'Vegan', checked:false}
         // {name: 'Halal', checked:false},
         // {name: 'Kosher', checked:false},
-        {name: 'Nut Allergy', checked:false}
+        // {name: 'Nut Allergy', checked:false}
        
       ]
       $scope.otherDietaryRestriction = ""
