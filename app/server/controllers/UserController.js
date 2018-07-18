@@ -1,5 +1,6 @@
 var _ = require('underscore');
 var User = require('../models/User');
+var Team = require('../models/Team');
 var Settings = require('../models/Settings');
 var Mailer = require('../services/email');
 var Stats = require('../services/stats');
@@ -454,32 +455,59 @@ UserController.createOrJoinTeam = function(id, code, callback){
     });
   }
 
-  User.find({
-    teamCode: code
+  Team.find({
+    name: code
   })
-  .select('profile.name')
-  .exec(function(err, users){
-    // Check to see if this team is joinable (< team max size)
-    if (users.length >= maxTeamSize){
-      return callback({
-        message: "Team is full."
-      });
+  .select('name')
+  .exec(function(err, teams) {
+    var team;
+
+    if (!teams.length) {
+      team = new Team();
+      team.name = code;
+      team.save();
+    } else {
+      team = teams[0];
     }
 
-    // Otherwise, we can add that person to the team.
     User.findOneAndUpdate({
       _id: id,
       verified: true
-    },{
+    }, {
       $set: {
-        teamCode: code
+        teamCode: team
       }
     }, {
       new: true
     },
     callback);
-
   });
+  
+  // User.find({
+  //   teamCode: code
+  // })
+  // .select('profile.name')
+  // .exec(function(err, users){
+  //   // Check to see if this team is joinable (< team max size)
+  //   if (users.length >= maxTeamSize){
+  //     return callback({
+  //       message: "Team is full."
+  //     });
+  //   }
+
+  //   // Otherwise, we can add that person to the team.
+  //   User.findOneAndUpdate({
+  //     _id: id,
+  //     verified: true
+  //   },{
+  //     $set: {
+  //       teamCode: code
+  //     }
+  //   }, {
+  //     new: true
+  //   },
+  //   callback);
+  // });
 };
 
 /**
